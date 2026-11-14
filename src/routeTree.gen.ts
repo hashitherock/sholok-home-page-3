@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as CafeRouteImport } from './routes/cafe'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as ShoppingRouteImport } from './routes/shopping'
+import { Route as SmartstoreIndexRouteImport } from './routes/smartstore.index'
+import { Route as SmartstoreSlugRouteImport } from './routes/smartstore.$slug'
+import { Route as SmartstoreDashboardRouteImport } from './routes/smartstore.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CafeRoute = CafeRouteImport.update({
+  id: '/cafe',
+  path: '/cafe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShoppingRoute = ShoppingRouteImport.update({
+  id: '/shopping',
+  path: '/shopping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartstoreIndexRoute = SmartstoreIndexRouteImport.update({
+  id: '/smartstore/',
+  path: '/smartstore/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartstoreSlugRoute = SmartstoreSlugRouteImport.update({
+  id: '/smartstore/$slug',
+  path: '/smartstore/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartstoreDashboardRoute = SmartstoreDashboardRouteImport.update({
+  id: '/smartstore/dashboard',
+  path: '/smartstore/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/blog': typeof BlogRoute
+  '/cafe': typeof CafeRoute
+  '/news': typeof NewsRoute
+  '/search': typeof SearchRoute
+  '/shopping': typeof ShoppingRoute
+  '/smartstore/$slug': typeof SmartstoreSlugRoute
+  '/smartstore/dashboard': typeof SmartstoreDashboardRoute
+  '/smartstore/': typeof SmartstoreIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/blog': typeof BlogRoute
+  '/cafe': typeof CafeRoute
+  '/news': typeof NewsRoute
+  '/search': typeof SearchRoute
+  '/shopping': typeof ShoppingRoute
+  '/smartstore/$slug': typeof SmartstoreSlugRoute
+  '/smartstore/dashboard': typeof SmartstoreDashboardRoute
+  '/smartstore': typeof SmartstoreIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/blog': typeof BlogRoute
+  '/cafe': typeof CafeRoute
+  '/news': typeof NewsRoute
+  '/search': typeof SearchRoute
+  '/shopping': typeof ShoppingRoute
+  '/smartstore/$slug': typeof SmartstoreSlugRoute
+  '/smartstore/dashboard': typeof SmartstoreDashboardRoute
+  '/smartstore/': typeof SmartstoreIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/blog'
+    | '/cafe'
+    | '/news'
+    | '/search'
+    | '/shopping'
+    | '/smartstore/$slug'
+    | '/smartstore/dashboard'
+    | '/smartstore/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/account'
+    | '/blog'
+    | '/cafe'
+    | '/news'
+    | '/search'
+    | '/shopping'
+    | '/smartstore/$slug'
+    | '/smartstore/dashboard'
+    | '/smartstore'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/blog'
+    | '/cafe'
+    | '/news'
+    | '/search'
+    | '/shopping'
+    | '/smartstore/$slug'
+    | '/smartstore/dashboard'
+    | '/smartstore/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  BlogRoute: typeof BlogRoute
+  CafeRoute: typeof CafeRoute
+  NewsRoute: typeof NewsRoute
+  SearchRoute: typeof SearchRoute
+  ShoppingRoute: typeof ShoppingRoute
+  SmartstoreSlugRoute: typeof SmartstoreSlugRoute
+  SmartstoreDashboardRoute: typeof SmartstoreDashboardRoute
+  SmartstoreIndexRoute: typeof SmartstoreIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cafe': {
+      id: '/cafe'
+      path: '/cafe'
+      fullPath: '/cafe'
+      preLoaderRoute: typeof CafeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopping': {
+      id: '/shopping'
+      path: '/shopping'
+      fullPath: '/shopping'
+      preLoaderRoute: typeof ShoppingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smartstore/': {
+      id: '/smartstore/'
+      path: '/smartstore'
+      fullPath: '/smartstore/'
+      preLoaderRoute: typeof SmartstoreIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smartstore/$slug': {
+      id: '/smartstore/$slug'
+      path: '/smartstore/$slug'
+      fullPath: '/smartstore/$slug'
+      preLoaderRoute: typeof SmartstoreSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smartstore/dashboard': {
+      id: '/smartstore/dashboard'
+      path: '/smartstore/dashboard'
+      fullPath: '/smartstore/dashboard'
+      preLoaderRoute: typeof SmartstoreDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  BlogRoute: BlogRoute,
+  CafeRoute: CafeRoute,
+  NewsRoute: NewsRoute,
+  SearchRoute: SearchRoute,
+  ShoppingRoute: ShoppingRoute,
+  SmartstoreSlugRoute: SmartstoreSlugRoute,
+  SmartstoreDashboardRoute: SmartstoreDashboardRoute,
+  SmartstoreIndexRoute: SmartstoreIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
