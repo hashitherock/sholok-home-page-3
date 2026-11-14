@@ -15,6 +15,10 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as CafeRouteImport } from './routes/cafe'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as ShoppingRouteImport } from './routes/shopping'
+import { Route as SmartstoreIndexRouteImport } from './routes/smartstore.index'
+import { Route as SmartstoreSlugRouteImport } from './routes/smartstore.$slug'
+import { Route as SmartstoreDashboardRouteImport } from './routes/smartstore.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +50,26 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShoppingRoute = ShoppingRouteImport.update({
+  id: '/shopping',
+  path: '/shopping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartstoreIndexRoute = SmartstoreIndexRouteImport.update({
+  id: '/smartstore/',
+  path: '/smartstore/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartstoreSlugRoute = SmartstoreSlugRouteImport.update({
+  id: '/smartstore/$slug',
+  path: '/smartstore/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartstoreDashboardRoute = SmartstoreDashboardRouteImport.update({
+  id: '/smartstore/dashboard',
+  path: '/smartstore/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +78,10 @@ export interface FileRoutesByFullPath {
   '/cafe': typeof CafeRoute
   '/news': typeof NewsRoute
   '/search': typeof SearchRoute
+  '/shopping': typeof ShoppingRoute
+  '/smartstore/$slug': typeof SmartstoreSlugRoute
+  '/smartstore/dashboard': typeof SmartstoreDashboardRoute
+  '/smartstore/': typeof SmartstoreIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +90,10 @@ export interface FileRoutesByTo {
   '/cafe': typeof CafeRoute
   '/news': typeof NewsRoute
   '/search': typeof SearchRoute
+  '/shopping': typeof ShoppingRoute
+  '/smartstore/$slug': typeof SmartstoreSlugRoute
+  '/smartstore/dashboard': typeof SmartstoreDashboardRoute
+  '/smartstore': typeof SmartstoreIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +103,48 @@ export interface FileRoutesById {
   '/cafe': typeof CafeRoute
   '/news': typeof NewsRoute
   '/search': typeof SearchRoute
+  '/shopping': typeof ShoppingRoute
+  '/smartstore/$slug': typeof SmartstoreSlugRoute
+  '/smartstore/dashboard': typeof SmartstoreDashboardRoute
+  '/smartstore/': typeof SmartstoreIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/account' | '/blog' | '/cafe' | '/news' | '/search'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/blog'
+    | '/cafe'
+    | '/news'
+    | '/search'
+    | '/shopping'
+    | '/smartstore/$slug'
+    | '/smartstore/dashboard'
+    | '/smartstore/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/blog' | '/cafe' | '/news' | '/search'
-  id: '__root__' | '/' | '/account' | '/blog' | '/cafe' | '/news' | '/search'
+  to:
+    | '/'
+    | '/account'
+    | '/blog'
+    | '/cafe'
+    | '/news'
+    | '/search'
+    | '/shopping'
+    | '/smartstore/$slug'
+    | '/smartstore/dashboard'
+    | '/smartstore'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/blog'
+    | '/cafe'
+    | '/news'
+    | '/search'
+    | '/shopping'
+    | '/smartstore/$slug'
+    | '/smartstore/dashboard'
+    | '/smartstore/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -87,6 +154,10 @@ export interface RootRouteChildren {
   CafeRoute: typeof CafeRoute
   NewsRoute: typeof NewsRoute
   SearchRoute: typeof SearchRoute
+  ShoppingRoute: typeof ShoppingRoute
+  SmartstoreSlugRoute: typeof SmartstoreSlugRoute
+  SmartstoreDashboardRoute: typeof SmartstoreDashboardRoute
+  SmartstoreIndexRoute: typeof SmartstoreIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -133,6 +204,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shopping': {
+      id: '/shopping'
+      path: '/shopping'
+      fullPath: '/shopping'
+      preLoaderRoute: typeof ShoppingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smartstore/': {
+      id: '/smartstore/'
+      path: '/smartstore'
+      fullPath: '/smartstore/'
+      preLoaderRoute: typeof SmartstoreIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smartstore/$slug': {
+      id: '/smartstore/$slug'
+      path: '/smartstore/$slug'
+      fullPath: '/smartstore/$slug'
+      preLoaderRoute: typeof SmartstoreSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smartstore/dashboard': {
+      id: '/smartstore/dashboard'
+      path: '/smartstore/dashboard'
+      fullPath: '/smartstore/dashboard'
+      preLoaderRoute: typeof SmartstoreDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -143,6 +242,10 @@ const rootRouteChildren: RootRouteChildren = {
   CafeRoute: CafeRoute,
   NewsRoute: NewsRoute,
   SearchRoute: SearchRoute,
+  ShoppingRoute: ShoppingRoute,
+  SmartstoreSlugRoute: SmartstoreSlugRoute,
+  SmartstoreDashboardRoute: SmartstoreDashboardRoute,
+  SmartstoreIndexRoute: SmartstoreIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
