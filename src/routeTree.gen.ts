@@ -13,9 +13,15 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as CafeRouteImport } from './routes/cafe'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as MusicRouteImport } from './routes/music'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as SeriesRouteImport } from './routes/series'
 import { Route as ShoppingRouteImport } from './routes/shopping'
+import { Route as TvRouteImport } from './routes/tv'
+import { Route as WebtoonRouteImport } from './routes/webtoon'
 import { Route as SmartstoreIndexRouteImport } from './routes/smartstore.index'
 import { Route as SmartstoreSlugRouteImport } from './routes/smartstore.$slug'
 import { Route as SmartstoreDashboardRouteImport } from './routes/smartstore.dashboard'
@@ -40,6 +46,21 @@ const CafeRoute = CafeRouteImport.update({
   path: '/cafe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MusicRoute = MusicRouteImport.update({
+  id: '/music',
+  path: '/music',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NewsRoute = NewsRouteImport.update({
   id: '/news',
   path: '/news',
@@ -50,9 +71,24 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeriesRoute = SeriesRouteImport.update({
+  id: '/series',
+  path: '/series',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShoppingRoute = ShoppingRouteImport.update({
   id: '/shopping',
   path: '/shopping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TvRoute = TvRouteImport.update({
+  id: '/tv',
+  path: '/tv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebtoonRoute = WebtoonRouteImport.update({
+  id: '/webtoon',
+  path: '/webtoon',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SmartstoreIndexRoute = SmartstoreIndexRouteImport.update({
@@ -76,9 +112,15 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/blog': typeof BlogRoute
   '/cafe': typeof CafeRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/map': typeof MapRoute
+  '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/search': typeof SearchRoute
+  '/series': typeof SeriesRoute
   '/shopping': typeof ShoppingRoute
+  '/tv': typeof TvRoute
+  '/webtoon': typeof WebtoonRoute
   '/smartstore/$slug': typeof SmartstoreSlugRoute
   '/smartstore/dashboard': typeof SmartstoreDashboardRoute
   '/smartstore/': typeof SmartstoreIndexRoute
@@ -88,9 +130,15 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/blog': typeof BlogRoute
   '/cafe': typeof CafeRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/map': typeof MapRoute
+  '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/search': typeof SearchRoute
+  '/series': typeof SeriesRoute
   '/shopping': typeof ShoppingRoute
+  '/tv': typeof TvRoute
+  '/webtoon': typeof WebtoonRoute
   '/smartstore/$slug': typeof SmartstoreSlugRoute
   '/smartstore/dashboard': typeof SmartstoreDashboardRoute
   '/smartstore': typeof SmartstoreIndexRoute
@@ -101,9 +149,15 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/blog': typeof BlogRoute
   '/cafe': typeof CafeRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/map': typeof MapRoute
+  '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/search': typeof SearchRoute
+  '/series': typeof SeriesRoute
   '/shopping': typeof ShoppingRoute
+  '/tv': typeof TvRoute
+  '/webtoon': typeof WebtoonRoute
   '/smartstore/$slug': typeof SmartstoreSlugRoute
   '/smartstore/dashboard': typeof SmartstoreDashboardRoute
   '/smartstore/': typeof SmartstoreIndexRoute
@@ -115,9 +169,15 @@ export interface FileRouteTypes {
     | '/account'
     | '/blog'
     | '/cafe'
+    | '/knowledge'
+    | '/map'
+    | '/music'
     | '/news'
     | '/search'
+    | '/series'
     | '/shopping'
+    | '/tv'
+    | '/webtoon'
     | '/smartstore/$slug'
     | '/smartstore/dashboard'
     | '/smartstore/'
@@ -127,9 +187,15 @@ export interface FileRouteTypes {
     | '/account'
     | '/blog'
     | '/cafe'
+    | '/knowledge'
+    | '/map'
+    | '/music'
     | '/news'
     | '/search'
+    | '/series'
     | '/shopping'
+    | '/tv'
+    | '/webtoon'
     | '/smartstore/$slug'
     | '/smartstore/dashboard'
     | '/smartstore'
@@ -139,9 +205,15 @@ export interface FileRouteTypes {
     | '/account'
     | '/blog'
     | '/cafe'
+    | '/knowledge'
+    | '/map'
+    | '/music'
     | '/news'
     | '/search'
+    | '/series'
     | '/shopping'
+    | '/tv'
+    | '/webtoon'
     | '/smartstore/$slug'
     | '/smartstore/dashboard'
     | '/smartstore/'
@@ -152,9 +224,15 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   BlogRoute: typeof BlogRoute
   CafeRoute: typeof CafeRoute
+  KnowledgeRoute: typeof KnowledgeRoute
+  MapRoute: typeof MapRoute
+  MusicRoute: typeof MusicRoute
   NewsRoute: typeof NewsRoute
   SearchRoute: typeof SearchRoute
+  SeriesRoute: typeof SeriesRoute
   ShoppingRoute: typeof ShoppingRoute
+  TvRoute: typeof TvRoute
+  WebtoonRoute: typeof WebtoonRoute
   SmartstoreSlugRoute: typeof SmartstoreSlugRoute
   SmartstoreDashboardRoute: typeof SmartstoreDashboardRoute
   SmartstoreIndexRoute: typeof SmartstoreIndexRoute
@@ -190,6 +268,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CafeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/music': {
+      id: '/music'
+      path: '/music'
+      fullPath: '/music'
+      preLoaderRoute: typeof MusicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/news': {
       id: '/news'
       path: '/news'
@@ -204,11 +303,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/series': {
+      id: '/series'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shopping': {
       id: '/shopping'
       path: '/shopping'
       fullPath: '/shopping'
       preLoaderRoute: typeof ShoppingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tv': {
+      id: '/tv'
+      path: '/tv'
+      fullPath: '/tv'
+      preLoaderRoute: typeof TvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/webtoon': {
+      id: '/webtoon'
+      path: '/webtoon'
+      fullPath: '/webtoon'
+      preLoaderRoute: typeof WebtoonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/smartstore/': {
@@ -240,9 +360,15 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   BlogRoute: BlogRoute,
   CafeRoute: CafeRoute,
+  KnowledgeRoute: KnowledgeRoute,
+  MapRoute: MapRoute,
+  MusicRoute: MusicRoute,
   NewsRoute: NewsRoute,
   SearchRoute: SearchRoute,
+  SeriesRoute: SeriesRoute,
   ShoppingRoute: ShoppingRoute,
+  TvRoute: TvRoute,
+  WebtoonRoute: WebtoonRoute,
   SmartstoreSlugRoute: SmartstoreSlugRoute,
   SmartstoreDashboardRoute: SmartstoreDashboardRoute,
   SmartstoreIndexRoute: SmartstoreIndexRoute,
