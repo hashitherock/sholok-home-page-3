@@ -7,7 +7,7 @@ import { blogs, cafePosts, news, places, products, questions, services, tileDark
 const cats = ["all", "web", "news", "shopping", "images", "videos", "blogs", "knowledge", "maps"] as const;
 
 export const Route = createFileRoute("/search")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "", cat: typeof s.cat === "string" ? s.cat : "all" }),
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" ? s["q"] : "", cat: typeof s["cat"] === "string" ? s["cat"] : "all" }),
   head: () => seo("Search", "Search the web, news, shopping, videos, blogs, knowledge and maps with SHOLOK Search."),
   component: SearchPage,
 });
@@ -32,9 +32,10 @@ function SearchPage() {
     <div>
       <div className="border-b bg-card">
         <div className="mx-auto max-w-5xl px-4 py-6">
+          <h1 className="sr-only">SHOLOK Search{q ? ` results for ${q}` : ""}</h1>
           <SearchBar key={q} size="md" initial={q} cat={cat} />
           <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
-            {cats.map((c) => <Link key={c} to="/search" search={{ q, cat: c }}><Pill active={cat === c}>{c[0].toUpperCase() + c.slice(1)}</Pill></Link>)}
+            {cats.map((c) => <Link key={c} to="/search" search={{ q, cat: c }}><Pill active={cat === c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Pill></Link>)}
           </div>
         </div>
       </div>

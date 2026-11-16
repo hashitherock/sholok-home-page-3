@@ -48,11 +48,11 @@ export function SearchBar({ size = "lg", initial = "", cat = "all" }: { size?: "
             if (e.key === "ArrowUp") { e.preventDefault(); setIdx((i) => Math.max(i - 1, -1)); }
             if (e.key === "Escape") setOpen(false);
           }}
-          placeholder="Search news, products, places, answers…"
+          placeholder="Search anything on SHOLOK..."
           className={cn("min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground", size === "lg" ? "text-lg" : "text-base")}
         />
         {q && <button type="button" onClick={() => { setQ(""); inputRef.current?.focus(); }} className="rounded-full p-1.5 text-muted-foreground hover:bg-muted" aria-label="Clear search"><X className="h-4 w-4" /></button>}
-        <button type="submit" className={cn("grid place-items-center rounded-full bg-brand text-primary-foreground transition-transform hover:scale-105", size === "lg" ? "h-12 w-12" : "h-9 w-9")} aria-label="Search"><Search className="h-5 w-5" /></button>
+        <button type="submit" className={cn("grid place-items-center rounded-full bg-hot text-hot-foreground transition-transform hover:scale-105", size === "lg" ? "h-12 w-12" : "h-9 w-9")} aria-label="Search"><Search className="h-5 w-5" /></button>
       </form>
       {open && items.length > 0 && (
         <div className="absolute inset-x-0 top-full z-40 mt-2 overflow-hidden rounded-2xl border bg-popover p-2 shadow-lift" role="listbox">

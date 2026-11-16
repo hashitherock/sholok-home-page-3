@@ -10,7 +10,7 @@ export const Route = createFileRoute("/tv")({
 });
 function TvPage() {
   const [cat, setCat] = useState("All");
-  const [now, setNow] = useState(videos[0]);
+  const [now, setNow] = useState(videos[0]!);
   const list = videos.filter((v) => cat === "All" || v.cat === cat);
   return (
     <div>

@@ -10,13 +10,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const w = cities[0];
+  const w = cities[0]!;
   return (
     <div>
       <section className="bg-hero">
         <div className="mx-auto max-w-4xl px-4 pb-10 pt-14 text-center md:pt-20">
           <p className="font-logo text-5xl text-primary md:text-7xl">SHOLOK</p>
-          <h1 className="mt-4 text-2xl font-extrabold tracking-tight md:text-4xl">Everything You Need, All in One Place.</h1>
+          <h1 className="mt-4 text-2xl font-extrabold tracking-tight md:text-4xl">Everything You Need, <span className="text-hot">All in One Place.</span></h1>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Discover, connect, shop, explore and experience the digital world with SHOLOK.</p>
           <div className="mx-auto mt-8 max-w-3xl text-left"><SearchBar /></div>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
@@ -31,9 +31,9 @@ function Home() {
 
       <div className="mx-auto max-w-7xl space-y-6 px-4">
         <section aria-label="Services" className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-10">
-          {services.filter((s) => s.id !== "main").map((s) => (
+          {services.filter((s) => s.id !== "main").map((s, i) => (
             <Link key={s.id} to={s.to} className="group card-surface lift flex flex-col items-center gap-2 p-3 text-center">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-brand group-hover:text-primary-foreground"><s.icon className="h-5 w-5" /></span>
+              <span className={`grid h-11 w-11 place-items-center rounded-xl transition-colors ${i % 2 ? "bg-hot-soft text-hot group-hover:bg-hot group-hover:text-hot-foreground" : "bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground"}`}><s.icon className="h-5 w-5" /></span>
               <span className="text-xs font-bold">{s.name}</span>
               <span className="hidden text-[10px] leading-tight text-muted-foreground md:block">{s.desc}</span>
             </Link>
@@ -44,11 +44,11 @@ function Home() {
           <Section title="News & Trending" action={<MoreLink to="/news" />} className="lg:col-span-2">
             <div className="grid gap-5 md:grid-cols-2">
               <Link to="/news" className="group">
-                <div className="flex aspect-[16/10] items-end rounded-xl p-4" style={tileDark(news[0].hue)}>
+                <div className="flex aspect-[16/10] items-end rounded-xl p-4" style={tileDark(news[0]!.hue)}>
                   <span className="rounded-full bg-hot px-2 py-0.5 text-[10px] font-bold uppercase text-hot-foreground">Top story</span>
                 </div>
-                <h3 className="mt-3 text-lg font-bold leading-snug group-hover:text-primary">{news[0].title}</h3>
-                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{news[0].summary}</p>
+                <h3 className="mt-3 text-lg font-bold leading-snug group-hover:text-primary">{news[0]!.title}</h3>
+                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{news[0]!.summary}</p>
               </Link>
               <ul className="divide-y">
                 {news.slice(1, 7).map((n) => (

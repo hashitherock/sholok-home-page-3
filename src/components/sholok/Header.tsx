@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Globe } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Bell, Grid3x3, Menu, Search, ShoppingCart, UserCircle, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -22,14 +23,22 @@ const initialNotes = [
 ];
 
 export function MegaMenuGrid({ onPick }: { onPick?: () => void }) {
+  const [q, setQ] = useState("");
+  const path = useRouterState({ select: (s) => s.location.pathname });
+  const list = services.filter((s) => (s.name + s.desc).toLowerCase().includes(q.toLowerCase()));
   return (
+    <div>
+    <label htmlFor="svc-q" className="sr-only">Search services</label>
+    <input id="svc-q" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search services…" className="mb-3 h-10 w-full rounded-full border bg-muted px-4 text-sm outline-none focus:border-primary" />
+    {list.length === 0 && <p className="p-4 text-center text-sm text-muted-foreground">No service matches “{q}”.</p>}
     <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
-      {services.map((s) => (
-        <Link key={s.id} to={s.to} onClick={onPick} className="group flex items-center gap-3 rounded-xl p-2.5 hover:bg-secondary">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"><s.icon className="h-4.5 w-4.5" /></span>
+      {list.map((s, i) => (
+        <Link key={s.id} to={s.to} onClick={onPick} className={cn("group flex items-center gap-3 rounded-xl p-2.5 hover:bg-muted", (s.to === "/" ? path === "/" : path.startsWith(s.to)) && "bg-hot-soft")}>
+          <span className={cn("grid h-9 w-9 shrink-0 place-items-center rounded-lg transition-colors", i % 2 ? "bg-hot-soft text-hot group-hover:bg-hot group-hover:text-hot-foreground" : "bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground")}><s.icon className="h-4.5 w-4.5" /></span>
           <span className="min-w-0"><span className="block text-sm font-semibold">{s.name}</span><span className="block truncate text-[11px] text-muted-foreground">{s.desc}</span></span>
         </Link>
       ))}
+    </div>
     </div>
   );
 }
@@ -41,6 +50,7 @@ export function Header() {
   const { items } = useCart();
   const count = items.reduce((s, i) => s + i.qty, 0);
   const [mega, setMega] = useState(false);
+  const [lang, setLang] = useLocal<"EN" | "BN">("lang", "EN");
   const [mobile, setMobile] = useState(false);
   const active = (to: string) => (to === "/" ? path === "/" : path.startsWith(to));
 
@@ -50,9 +60,9 @@ export function Header() {
         <SholokLogo className="text-2xl" />
         <nav className="ml-4 hidden items-center gap-1 lg:flex" aria-label="Main">
           {nav.map((n) => (
-            <Link key={n.to} to={n.to} className={cn("relative rounded-full px-3 py-2 text-sm font-semibold transition-colors hover:text-primary", active(n.to) ? "text-primary" : "text-foreground/80")}>
+            <Link key={n.to} to={n.to} className={cn("relative rounded-full px-3 py-2 text-sm font-semibold transition-colors hover:text-primary", active(n.to) ? "text-hot" : "text-foreground/80")}>
               {n.label}
-              {active(n.to) && <span className="absolute inset-x-3 -bottom-[13px] h-0.5 rounded-full bg-primary" />}
+              {active(n.to) && <span className="absolute inset-x-3 -bottom-[13px] h-0.5 rounded-full bg-hot" />}
             </Link>
           ))}
           <Popover open={mega} onOpenChange={setMega}>
@@ -64,6 +74,7 @@ export function Header() {
           </Popover>
         </nav>
         <div className="ml-auto flex items-center gap-1">
+          <button onClick={() => setLang(lang === "EN" ? "BN" : "EN")} className="hidden h-10 items-center gap-1 rounded-full px-2.5 text-xs font-bold hover:bg-muted md:flex" aria-label="Switch language"><Globe className="h-4 w-4" />{lang === "EN" ? "English" : "বাংলা"}</button>
           <Link to="/search" search={{ q: "", cat: "all" }} className="grid h-10 w-10 place-items-center rounded-full hover:bg-muted" aria-label="Search"><Search className="h-5 w-5" /></Link>
           <Popover>
             <PopoverTrigger className="relative grid h-10 w-10 place-items-center rounded-full hover:bg-muted" aria-label="Notifications">
@@ -99,7 +110,7 @@ export function Header() {
               <div className="mb-4 flex items-center justify-between"><SheetTitle asChild><span className="font-logo text-2xl text-primary">SHOLOK</span></SheetTitle><button onClick={() => setMobile(false)} aria-label="Close menu" className="rounded-full p-2 hover:bg-muted"><X className="h-5 w-5" /></button></div>
               <Button asChild className="mb-4 w-full rounded-full"><Link to="/account" onClick={() => setMobile(false)}>{user ? `My account · ${user.name}` : "Sign in"}</Link></Button>
               <div className="mb-5 grid grid-cols-2 gap-1">
-                {nav.map((n) => <Link key={n.to} to={n.to} onClick={() => setMobile(false)} className={cn("rounded-lg px-3 py-2 text-sm font-semibold", active(n.to) ? "bg-secondary text-primary" : "hover:bg-muted")}>{n.label}</Link>)}
+                {nav.map((n) => <Link key={n.to} to={n.to} onClick={() => setMobile(false)} className={cn("rounded-lg px-3 py-2 text-sm font-semibold", active(n.to) ? "bg-hot-soft text-hot" : "hover:bg-muted")}>{n.label}</Link>)}
               </div>
               <p className="mb-2 text-xs font-semibold uppercase text-muted-foreground">All services</p>
               <MegaMenuGrid onPick={() => setMobile(false)} />

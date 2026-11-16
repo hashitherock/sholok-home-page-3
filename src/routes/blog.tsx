@@ -31,7 +31,7 @@ function Blog() {
           <DialogTrigger asChild><Button className="rounded-full"><PenLine className="mr-2 h-4 w-4" />Write a post</Button></DialogTrigger>
           <DialogContent>
             <DialogHeader><DialogTitle>New blog post</DialogTitle></DialogHeader>
-            <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); if (d.title.trim().length < 4 || d.body.trim().length < 20) return toast.error("Add a title (4+) and at least 20 characters of text"); setMine([{ id: Date.now(), title: d.title.trim(), author: "You", read: `${Math.max(1, Math.round(d.body.split(" ").length / 200))} min`, cat: "Mine", excerpt: d.body.trim(), hue: 305 }, ...mine]); setD({ title: "", body: "" }); setOpen(false); toast.success("Published (saved in this browser)"); }}>
+            <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); if (d.title.trim().length < 4 || d.body.trim().length < 20) { toast.error("Add a title (4+) and at least 20 characters of text"); return; } setMine([{ id: Date.now(), title: d.title.trim(), author: "You", read: `${Math.max(1, Math.round(d.body.split(" ").length / 200))} min`, cat: "Mine", excerpt: d.body.trim(), hue: 305 }, ...mine]); setD({ title: "", body: "" }); setOpen(false); toast.success("Published (saved in this browser)"); }}>
               <label className="sr-only" htmlFor="bt">Title</label><Input id="bt" placeholder="Title" value={d.title} onChange={(e) => setD({ ...d, title: e.target.value })} />
               <label className="sr-only" htmlFor="bb">Story</label><Textarea id="bb" placeholder="Tell your story…" rows={6} value={d.body} onChange={(e) => setD({ ...d, body: e.target.value })} />
               <Button type="submit" className="w-full">Publish</Button>

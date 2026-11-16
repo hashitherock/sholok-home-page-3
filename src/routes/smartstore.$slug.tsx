@@ -56,7 +56,7 @@ function Storefront() {
               <label htmlFor="sq" className="text-xs font-semibold">Search this store</label>
               <Input id="sq" value={q} onChange={(e) => setQ(e.target.value)} className="mt-1 h-9" />
               <p className="mt-4 text-xs font-semibold">Max price: {taka(limit)}</p>
-              <Slider className="mt-3" min={0} max={max} step={Math.max(100, Math.round(max / 50))} value={[limit]} onValueChange={(v) => setLimit(v[0])} aria-label="Maximum price" />
+              <Slider className="mt-3" min={0} max={max} step={Math.max(100, Math.round(max / 50))} value={[limit]} onValueChange={(v) => setLimit(v[0] ?? max)} aria-label="Maximum price" />
               <label htmlFor="ss" className="mt-4 block text-xs font-semibold">Sort</label>
               <select id="ss" value={sort} onChange={(e) => setSort(e.target.value)} className="mt-1 h-9 w-full rounded-md border bg-card px-2 text-sm"><option value="popular">Most popular</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select>
             </Section>
