@@ -16,7 +16,7 @@ function Home() {
       <section className="bg-hero">
         <div className="mx-auto max-w-4xl px-4 pb-10 pt-14 text-center md:pt-20">
           <p className="font-logo text-5xl text-primary md:text-7xl">SHOLOK</p>
-          <h1 className="mt-4 text-2xl font-extrabold tracking-tight md:text-4xl">Everything You Need, All in One Place.</h1>
+          <h1 className="mt-4 text-2xl font-extrabold tracking-tight md:text-4xl">Everything You Need, <span className="text-hot">All in One Place.</span></h1>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Discover, connect, shop, explore and experience the digital world with SHOLOK.</p>
           <div className="mx-auto mt-8 max-w-3xl text-left"><SearchBar /></div>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
