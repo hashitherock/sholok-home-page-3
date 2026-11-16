@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Shared demo content lives in src/lib/data.ts and browser persistence goes through useLocal in src/lib/store.ts — keeps all services consistent and frontend-only.
+- Each SHOLOK service is its own route file using the PageHeader/Section/seo helpers from src/components/sholok/ui.tsx — consistent branding and per-page metadata.

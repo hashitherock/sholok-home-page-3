@@ -32,6 +32,7 @@ function SearchPage() {
     <div>
       <div className="border-b bg-card">
         <div className="mx-auto max-w-5xl px-4 py-6">
+          <h1 className="sr-only">SHOLOK Search{q ? ` results for ${q}` : ""}</h1>
           <SearchBar key={q} size="md" initial={q} cat={cat} />
           <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
             {cats.map((c) => <Link key={c} to="/search" search={{ q, cat: c }}><Pill active={cat === c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Pill></Link>)}
