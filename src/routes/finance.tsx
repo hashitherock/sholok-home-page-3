@@ -13,7 +13,7 @@ export const Route = createFileRoute("/finance")({
   component: Finance,
 });
 function Finance() {
-  const [sel, setSel] = useState(stocks[0].sym);
+  const [sel, setSel] = useState(stocks[0]!.sym);
   const [watch, setWatch] = useLocal<string[]>("watch", []);
   const [amt, setAmt] = useState("100");
   const s = stocks.find((x) => x.sym === sel)!;
@@ -37,7 +37,7 @@ function Finance() {
             <ul className="space-y-2">{fx.map((f) => <li key={f.pair} className="flex justify-between text-sm"><span className="font-semibold">{f.pair}</span><span>{f.rate}</span></li>)}</ul>
             <label htmlFor="usd" className="mt-4 block text-xs font-semibold">Convert USD to BDT</label>
             <Input id="usd" inputMode="decimal" value={amt} onChange={(e) => setAmt(e.target.value)} className="mt-1" />
-            <p className="mt-2 text-lg font-extrabold text-primary">৳{((Number(amt) || 0) * fx[0].rate).toLocaleString("en-IN", { maximumFractionDigits: 2 })}</p>
+            <p className="mt-2 text-lg font-extrabold text-primary">৳{((Number(amt) || 0) * fx[0]!.rate).toLocaleString("en-IN", { maximumFractionDigits: 2 })}</p>
           </Section>
           <Section title="Watchlist">{watch.length === 0 ? <p className="text-sm text-muted-foreground">Star a stock to watch it.</p> : <ul className="space-y-1 text-sm">{watch.map((w) => <li key={w}><button onClick={() => setSel(w)} className="font-semibold hover:text-primary">{w}</button></li>)}</ul>}</Section>
         </div>

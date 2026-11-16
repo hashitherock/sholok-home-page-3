@@ -19,14 +19,14 @@ function Cafe() {
   const [mine, setMine] = useLocal<typeof cafePosts>("cafe-posts", []);
   const [filter, setFilter] = useState("All");
   const [title, setTitle] = useState("");
-  const [where, setWhere] = useState(cafes[0].name);
+  const [where, setWhere] = useState(cafes[0]!.name);
   const posts = [...mine, ...cafePosts].filter((p) => filter === "All" || p.cafe === filter);
   return (
     <div>
       <PageHeader title="Cafe" domain="cafe.sholok.com" desc="Communities you love, conversations that matter" icon={Users} />
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 lg:grid-cols-[1fr_320px]">
         <div className="space-y-4">
-          <form className="card-surface flex flex-col gap-2 p-4 sm:flex-row" onSubmit={(e) => { e.preventDefault(); if (title.trim().length < 5) return toast.error("Write at least 5 characters"); setMine([{ id: Date.now(), cafe: where, title: title.trim(), author: "you", comments: 0, likes: 0, time: "now" }, ...mine]); setTitle(""); toast.success("Posted to " + where); }}>
+          <form className="card-surface flex flex-col gap-2 p-4 sm:flex-row" onSubmit={(e) => { e.preventDefault(); if (title.trim().length < 5) { toast.error("Write at least 5 characters"); return; } setMine([{ id: Date.now(), cafe: where, title: title.trim(), author: "you", comments: 0, likes: 0, time: "now" }, ...mine]); setTitle(""); toast.success("Posted to " + where); }}>
             <label htmlFor="cafe-post" className="sr-only">New post</label>
             <Input id="cafe-post" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Start a discussion…" className="h-10 flex-1" />
             <select aria-label="Choose cafe" value={where} onChange={(e) => setWhere(e.target.value)} className="h-10 rounded-md border bg-card px-2 text-sm">{cafes.map((c) => <option key={c.name}>{c.name}</option>)}</select>

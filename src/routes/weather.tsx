@@ -13,7 +13,7 @@ const days = ["Today", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 function Weather() {
   const [city, setCity] = useLocal("city", "Dhaka");
   const [unit, setUnit] = useLocal<"C" | "F">("unit", "C");
-  const c = cities.find((x) => x.name === city) ?? cities[0];
+  const c = cities.find((x) => x.name === city) ?? cities[0]!;
   const u = (t: number) => (unit === "C" ? t : Math.round(t * 9 / 5 + 32)) + "°";
   return (
     <div>

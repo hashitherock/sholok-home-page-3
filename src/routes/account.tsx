@@ -25,12 +25,12 @@ function Account() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const x: Record<string, string> = {};
-    if (mode === "up" && f.name.trim().length < 2) x.name = "Enter your name (2+ characters).";
-    if (!/^\S+@\S+\.\S+$/.test(f.email)) x.email = "Enter a valid email address.";
-    if (f.pw.length < 6) x.pw = "Password must be at least 6 characters.";
+    if (mode === "up" && f.name.trim().length < 2) x["name"] = "Enter your name (2+ characters).";
+    if (!/^\S+@\S+\.\S+$/.test(f.email)) x["email"] = "Enter a valid email address.";
+    if (f.pw.length < 6) x["pw"] = "Password must be at least 6 characters.";
     setErr(x);
     if (Object.keys(x).length) return;
-    setUser({ name: mode === "up" ? f.name.trim() : f.email.split("@")[0], email: f.email });
+    setUser({ name: mode === "up" ? f.name.trim() : (f.email.split("@")[0] ?? ""), email: f.email });
     toast.success(mode === "up" ? "Account created (demo)" : "Signed in (demo)");
   };
 
@@ -44,9 +44,9 @@ function Account() {
               {(["in", "up"] as const).map((m) => <button key={m} onClick={() => { setMode(m); setErr({}); }} className={mode === m ? "rounded-full bg-card py-2 text-primary shadow-soft" : "py-2 text-muted-foreground"}>{m === "in" ? "Sign in" : "Create account"}</button>)}
             </div>
             <form onSubmit={submit} className="space-y-4" noValidate>
-              {mode === "up" && <Field id="name" label="Full name" value={f.name} onChange={(v) => setF({ ...f, name: v })} error={err.name} />}
-              <Field id="email" label="Email" type="email" value={f.email} onChange={(v) => setF({ ...f, email: v })} error={err.email} />
-              <Field id="pw" label="Password" type="password" value={f.pw} onChange={(v) => setF({ ...f, pw: v })} error={err.pw} />
+              {mode === "up" && <Field id="name" label="Full name" value={f.name} onChange={(v) => setF({ ...f, name: v })} error={err["name"]} />}
+              <Field id="email" label="Email" type="email" value={f.email} onChange={(v) => setF({ ...f, email: v })} error={err["email"]} />
+              <Field id="pw" label="Password" type="password" value={f.pw} onChange={(v) => setF({ ...f, pw: v })} error={err["pw"]} />
               <Button type="submit" className="w-full rounded-full" size="lg">{mode === "in" ? "Sign in" : "Create account"}</Button>
             </form>
             <p className="mt-4 flex items-center gap-2 text-xs text-muted-foreground"><ShieldCheck className="h-4 w-4 text-primary" />Demo only — your details stay in this browser.</p>
@@ -74,7 +74,7 @@ function Account() {
   );
 }
 
-function Field({ id, label, value, onChange, error, type = "text" }: { id: string; label: string; value: string; onChange: (v: string) => void; error?: string; type?: string }) {
+function Field({ id, label, value, onChange, error, type = "text" }: { id: string; label: string; value: string; onChange: (v: string) => void; error?: string | undefined; type?: string }) {
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>

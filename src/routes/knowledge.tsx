@@ -27,7 +27,7 @@ function Knowledge() {
     <div>
       <PageHeader title="Knowledge" domain="kin.sholok.com" desc="Ask anything, answer what you know" icon={HelpCircle} />
       <div className="mx-auto max-w-4xl space-y-4 px-4 py-8">
-        <form className="card-surface p-4" onSubmit={(e) => { e.preventDefault(); if (text.trim().length < 10 || !text.includes("?")) return toast.error("Write a full question (10+ characters) ending with ?"); setMine([{ id: Date.now(), q: text.trim(), tag: "General", answers: 0, views: 1, solved: false }, ...mine]); setText(""); toast.success("Question posted"); }}>
+        <form className="card-surface p-4" onSubmit={(e) => { e.preventDefault(); if (text.trim().length < 10 || !text.includes("?")) { toast.error("Write a full question (10+ characters) ending with ?"); return; } setMine([{ id: Date.now(), q: text.trim(), tag: "General", answers: 0, views: 1, solved: false }, ...mine]); setText(""); toast.success("Question posted"); }}>
           <label htmlFor="ask" className="mb-2 block font-bold">Ask a question</label>
           <Textarea id="ask" rows={2} value={text} onChange={(e) => setText(e.target.value)} placeholder="What would you like to know?" />
           <Button type="submit" className="mt-3">Post question</Button>

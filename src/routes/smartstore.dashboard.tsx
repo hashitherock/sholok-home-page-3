@@ -34,7 +34,7 @@ function Dashboard() {
   const save = (e: React.FormEvent) => {
     e.preventDefault();
     const price = Number(form.price), stock = Number(form.stock);
-    if (form.name.trim().length < 3 || !(price > 0) || !Number.isInteger(stock) || stock < 0) return toast.error("Enter a name (3+), price above 0 and a whole-number stock");
+    if (form.name.trim().length < 3 || !(price > 0) || !Number.isInteger(stock) || stock < 0) { toast.error("Enter a name (3+), price above 0 and a whole-number stock"); return; }
     if (form.id) setItems(items.map((i) => (i.id === form.id ? { ...i, name: form.name.trim(), price, stock } : i)));
     else setItems([{ id: "n" + Date.now(), name: form.name.trim(), price, stock }, ...items]);
     toast.success(form.id ? "Product updated" : "Product added");

@@ -14,7 +14,7 @@ function MusicPage() {
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [pos, setPos] = useState(0);
-  const t = tracks[i];
+  const t = tracks[i]!;
   useEffect(() => {
     if (!playing) return;
     const id = setInterval(() => setPos((p) => { if (p + 1 >= t.len) { setI((x) => (x + 1) % tracks.length); return 0; } return p + 1; }), 1000);

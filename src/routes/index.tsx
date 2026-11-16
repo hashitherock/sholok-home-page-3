@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const w = cities[0];
+  const w = cities[0]!;
   return (
     <div>
       <section className="bg-hero">
@@ -44,11 +44,11 @@ function Home() {
           <Section title="News & Trending" action={<MoreLink to="/news" />} className="lg:col-span-2">
             <div className="grid gap-5 md:grid-cols-2">
               <Link to="/news" className="group">
-                <div className="flex aspect-[16/10] items-end rounded-xl p-4" style={tileDark(news[0].hue)}>
+                <div className="flex aspect-[16/10] items-end rounded-xl p-4" style={tileDark(news[0]!.hue)}>
                   <span className="rounded-full bg-hot px-2 py-0.5 text-[10px] font-bold uppercase text-hot-foreground">Top story</span>
                 </div>
-                <h3 className="mt-3 text-lg font-bold leading-snug group-hover:text-primary">{news[0].title}</h3>
-                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{news[0].summary}</p>
+                <h3 className="mt-3 text-lg font-bold leading-snug group-hover:text-primary">{news[0]!.title}</h3>
+                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{news[0]!.summary}</p>
               </Link>
               <ul className="divide-y">
                 {news.slice(1, 7).map((n) => (

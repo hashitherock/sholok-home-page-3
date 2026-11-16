@@ -18,9 +18,9 @@ function Translate() {
   const key = (() => {
     const t = text.trim().toLowerCase().replace(/[?!.।]/g, "");
     if (from === "en") return phrasebook[t] ? t : null;
-    return Object.keys(phrasebook).find((k) => phrasebook[k][from]?.toLowerCase().replace(/[?!.।]/g, "") === t) ?? null;
+    return Object.keys(phrasebook).find((k) => phrasebook[k]?.[from]?.toLowerCase().replace(/[?!.।]/g, "") === t) ?? null;
   })();
-  const out = !text.trim() ? "" : key ? (to === "en" ? key[0].toUpperCase() + key.slice(1) : phrasebook[key][to]) : "";
+  const out = !text.trim() ? "" : key ? (to === "en" ? key.charAt(0).toUpperCase() + key.slice(1) : phrasebook[key]?.[to] ?? "") : "";
   const sel = (id: string, v: string, set: (s: string) => void) => <select aria-label={id} value={v} onChange={(e) => set(e.target.value)} className="h-10 rounded-md border bg-card px-3 text-sm font-semibold">{languages.map((l) => <option key={l.code} value={l.code}>{l.name}</option>)}</select>;
   return (
     <div>
