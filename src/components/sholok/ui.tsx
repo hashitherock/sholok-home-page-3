@@ -33,7 +33,7 @@ export function PageHeader({ title, domain, desc, icon: Icon, children }: { titl
             <div className="grid h-14 w-14 place-items-center rounded-2xl bg-brand text-primary-foreground shadow-lift"><Icon className="h-7 w-7" /></div>
             <div>
               <h1 className="text-2xl font-extrabold tracking-tight md:text-3xl"><span className="font-logo text-primary">SHOLOK</span> {title}</h1>
-              <p className="mt-1 text-sm text-muted-foreground">{desc} <span className="ml-1 rounded-full bg-secondary px-2 py-0.5 text-[11px] font-semibold text-secondary-foreground">{domain}</span></p>
+              <p className="mt-1 text-sm text-muted-foreground">{desc} <span className="ml-1 rounded-full bg-secondary px-2 py-0.5 text-[11px] font-semibold text-hot bg-hot-soft">{domain}</span></p>
             </div>
           </div>
           {children}

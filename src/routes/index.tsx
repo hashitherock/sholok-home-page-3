@@ -31,9 +31,9 @@ function Home() {
 
       <div className="mx-auto max-w-7xl space-y-6 px-4">
         <section aria-label="Services" className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-10">
-          {services.filter((s) => s.id !== "main").map((s) => (
+          {services.filter((s) => s.id !== "main").map((s, i) => (
             <Link key={s.id} to={s.to} className="group card-surface lift flex flex-col items-center gap-2 p-3 text-center">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-brand group-hover:text-primary-foreground"><s.icon className="h-5 w-5" /></span>
+              <span className={`grid h-11 w-11 place-items-center rounded-xl transition-colors ${i % 2 ? "bg-hot-soft text-hot group-hover:bg-hot group-hover:text-hot-foreground" : "bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground"}`}><s.icon className="h-5 w-5" /></span>
               <span className="text-xs font-bold">{s.name}</span>
               <span className="hidden text-[10px] leading-tight text-muted-foreground md:block">{s.desc}</span>
             </Link>
